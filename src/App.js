@@ -15,7 +15,7 @@ import CheckOutPage from './pages/checkout/checkout.component';
 import Header from './components/header/header.component';
 import Sign from './pages/sign/sign.component';
 
-import {auth,createUserProfileDocument} from './firebase/firebase.utils';
+import { auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 
 class App extends React.Component {
@@ -34,7 +34,7 @@ class App extends React.Component {
           });
         });
       }
-      else setCurrentUser(userAuth);
+      setCurrentUser(userAuth);
     });
   }
 
@@ -66,7 +66,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser:selectCurrentUser
+  currentUser:selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
