@@ -28,3 +28,8 @@ export const OptionContainerLink = styled(Link)`
     padding: 10px 15px;
     cursor: pointer;
 `;
+
+export const OptionContainerDiv = styled.div`
+    padding: 10px 15px;
+    cursor: pointer;
+`;

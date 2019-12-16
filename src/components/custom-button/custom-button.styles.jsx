@@ -3,6 +3,7 @@ import styled,{ css } from 'styled-components';
 const isGoogleSignIn = css`
     background-color: #4285f4;
     color: white;
+    border: none;
     &:hover {
     background-color: #357ae8;
     border: none;

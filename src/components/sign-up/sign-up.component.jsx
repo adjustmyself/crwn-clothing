@@ -1,11 +1,14 @@
 import React from 'react';
+
+import { connect } from 'react-redux';
+import { signUpStart } from '../../redux/user/user.actions';
+
 import {
     SignUpContainer,
     TitleContainer
 } from './sign-up.styles';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
-import {auth, createUserProfileDocument} from '../../firebase/firebase.utils';
 
 class SignUp extends React.Component {
     constructor() {
@@ -22,30 +25,33 @@ class SignUp extends React.Component {
         event.preventDefault();
 
         const {displayName, email, password, confirmPassword} = this.state;
+        const {signUpStart} = this.props;
 
         if(password !== confirmPassword) {
             alert("passwords don't match");
             return;
         }
 
-        try {
-            // 這個方法會返回一個userAuth物件給我們,但是被包在user裡面,所以我們desturcturing user
-            const { user } = await auth.createUserWithEmailAndPassword(
-                email,
-                password
-            );
-            await createUserProfileDocument(user, { displayName });
+        signUpStart({displayName, email, password});
+
+        // try {
+        //     // 這個方法會返回一個userAuth物件給我們,但是被包在user裡面,所以我們desturcturing user
+        //     const { user } = await auth.createUserWithEmailAndPassword(
+        //         email,
+        //         password
+        //     );
+        //     await createUserProfileDocument(user, { displayName });
             
-            // This will clear our form
-            this.setState({
-                displayName:'',
-                email:'',
-                password:'',
-                confirmPassword:''
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        //     // This will clear our form
+        //     this.setState({
+        //         displayName:'',
+        //         email:'',
+        //         password:'',
+        //         confirmPassword:''
+        //     });
+        // } catch (e) {
+        //     console.log(e);
+        // }
     };
     handleChange = event => {
         const {name, value} = event.target;
@@ -98,4 +104,8 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+    signUpStart: userProfiles => dispatch(signUpStart(userProfiles))
+})
+
+export default connect(null, mapDispatchToProps)(SignUp);
