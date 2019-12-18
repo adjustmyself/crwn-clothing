@@ -59,4 +59,8 @@ export const ButtonContainer = styled.button`
     justify-content: center;
 
     ${buttonStyle}
+    @media screen and (max-width: 800px) {
+        min-width: 120px;
+        width: auto;
+    }
 `;
