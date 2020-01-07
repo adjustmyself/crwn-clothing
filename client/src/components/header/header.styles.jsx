@@ -24,8 +24,17 @@ export const LogoContainer = styled(Link)`
     }
 `;
 
+export const HeaderTitle = styled.div`
+    padding: 15px;
+    height:100%;
+    font-size:36px;
+    @media screen and (max-width: 800px){
+        display:none;
+    }
+`;
+
 export const OptionsContainer = styled.div`
-    width: 50%;
+    
     height: 100%;
     display: flex;
     align-items: center;
